@@ -54,12 +54,10 @@
       <%= station_fields.label :line_name, "路線名" %><br>
       <%= station_fields.text_field :line_name %>
     </div>
-
     <div>
       <%= station_fields.label :station_name, "駅名" %><br>
       <%= station_fields.text_field :station_name %>
     </div>
-
     <div>
       <%= station_fields.label :minutes_walk, "徒歩分数" %><br>
       <%= station_fields.text_field :minutes_walk %>
@@ -67,7 +65,6 @@
     </div>
   <% end %>
 <% end %>
-
 
   <div>
     <%= form.submit @rental_property.persisted? ? '更新する' : '登録する' %><br>
