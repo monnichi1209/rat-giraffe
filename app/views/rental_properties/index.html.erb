@@ -22,7 +22,7 @@
         <td><%= rental_property.note %></td>
         <td><%= link_to '詳細', rental_property %></td>
         <td><%= link_to '編集', edit_rental_property_path(rental_property) %></td>
-        <td><%= link_to '削除', rental_property, method: :delete, data: { confirm: '本当に消しますか?' } %></td>
+        <td><%= link_to '削除', rental_property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
