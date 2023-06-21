@@ -14,14 +14,12 @@ class RentalPropertiesController < ApplicationController
 
   def edit
     @rental_property = RentalProperty.find(params[:id])
-    # 最寄駅の情報も取得する
     @rental_property.nearest_stations.build unless @rental_property.nearest_stations.present?
   end
   
 
   def create
     @rental_property = RentalProperty.new(rental_property_params)
-
     if @rental_property.save
       redirect_to @rental_property
     else
@@ -31,7 +29,6 @@ class RentalPropertiesController < ApplicationController
 
   def update
     @rental_property = RentalProperty.find(params[:id])
-
     if @rental_property.update(rental_property_params)
       redirect_to @rental_property
     else
@@ -49,7 +46,7 @@ class RentalPropertiesController < ApplicationController
   private
 
   def rental_property_params
-  params.require(:rental_property).permit(:name, :rent, :address, :age, :notes,
+  params.require(:rental_property).permit(:name, :rent, :address, :age, :note,
   nearest_stations_attributes: [:id, :line_name, :station_name, :minutes_walk, :_destroy])
   end
   

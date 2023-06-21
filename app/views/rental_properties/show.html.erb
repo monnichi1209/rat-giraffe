@@ -3,8 +3,24 @@
 <p>
   <strong>賃料:</strong>
   <%= @rental_property.rent %>
+  <span>円</span>
 </p>
-<%= link_to 'Delete', rental_property_path(@rental_property), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<p>
+  <strong>住所:</strong>
+  <%= @rental_property.address %>
+</p>
+
+<p>
+  <strong>築年数:</strong>
+  <%= @rental_property.age %>
+  <span>年</span>
+</p>
+
+<p>
+  <strong>備考:</strong>
+  <%= @rental_property.note %>
+</p>
 
 <p>
   <strong>最寄駅:</strong>
@@ -12,12 +28,16 @@
     <p>
       路線名: <%= station.line_name %><br>
       駅名: <%= station.station_name %><br>
-      徒歩分数: <%= station.minutes_walk %><br>
+      徒歩分数: <%= station.minutes_walk %><span>分</span><br>
+      
     </p>
   <% end %>
 </p>
 
 <p>
-  <%= link_to 'Edit', edit_rental_property_path(@rental_property) %> |
-  <%= link_to 'Back', rental_properties_path %>
+  <%= link_to '編集', edit_rental_property_path(@rental_property) %> |
+  <%= link_to '戻る', rental_properties_path %>
 </p>
+
+
+<%= link_to 'Delete', rental_property_path(@rental_property), method: :delete, data: { confirm: 'Are you sure?' } %>

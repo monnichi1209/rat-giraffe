@@ -1,26 +1,28 @@
 <%= form_with model: @rental_property, local: true do |form| %>
   <div>
-    <%= form.label :name, "物件名" %>
+    <%= form.label :name, "物件名" %><br>
     <%= form.text_field :name %>
   </div>
 
   <div>
-    <%= form.label :rent, "賃料" %>
+    <%= form.label :rent, "賃料" %><br>
     <%= form.text_field :rent %>
+    <span>円</span>
   </div>
 
   <div>
-    <%= form.label :address, "住所" %>
+    <%= form.label :address, "住所" %><br>
     <%= form.text_field :address %>
   </div>
 
   <div>
-    <%= form.label :age, "築年数" %>
+    <%= form.label :age, "築年数" %>年<br>
     <%= form.text_field :age %>
+    <span>年</span>
   </div>
 
   <div>
-    <%= form.label :note, "備考" %>
+    <%= form.label :note, "備考" %><br>
     <%= form.text_area :note %>
   </div>
 
@@ -28,24 +30,26 @@
 
   <%= form.fields_for :nearest_stations do |station_fields| %>
     <div>
-      <%= station_fields.label :line_name, "路線名" %>
+      <%= station_fields.label :line_name, "路線名" %><br>
       <%= station_fields.text_field :line_name %>
     </div>
 
     <div>
-      <%= station_fields.label :station_name, "駅名" %>
+      <%= station_fields.label :station_name, "駅名" %><br>
       <%= station_fields.text_field :station_name %>
     </div>
 
     <div>
-      <%= station_fields.label :minutes_walk, "徒歩分数" %>
-      <%= station_fields.number_field :minutes_walk %>
+      <%= station_fields.label :minutes_walk, "徒歩分数" %>分<br>
+      <%= station_fields.text_field :minutes_walk %>
+      <span>分</span>
     </div>
 
     <hr>
   <% end %>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit %><br>
+    <%= link_to '戻る', rental_properties_path %>
   </div>
 <% end %>
