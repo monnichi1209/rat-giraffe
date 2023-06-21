@@ -4,8 +4,18 @@
   <strong>賃料:</strong>
   <%= @rental_property.rent %>
 </p>
+<%= link_to 'Delete', rental_property_path(@rental_property), method: :delete, data: { confirm: 'Are you sure?' } %>
 
-<!-- 他の属性も同様に表示します -->
+<p>
+  <strong>最寄駅:</strong>
+  <% @rental_property.nearest_stations.each do |station| %>
+    <p>
+      路線名: <%= station.line_name %><br>
+      駅名: <%= station.station_name %><br>
+      徒歩分数: <%= station.minutes_walk %><br>
+    </p>
+  <% end %>
+</p>
 
 <p>
   <%= link_to 'Edit', edit_rental_property_path(@rental_property) %> |
