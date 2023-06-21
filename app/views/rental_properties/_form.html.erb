@@ -16,7 +16,7 @@
   </div>
 
   <div>
-    <%= form.label :age, "築年数" %>年<br>
+    <%= form.label :age, "築年数" %><br>
     <%= form.text_field :age %>
     <span>年</span>
   </div>
@@ -28,8 +28,29 @@
 
   <hr>
 
-  <%= form.fields_for :nearest_stations do |station_fields| %>
+  <% @rental_property.nearest_stations.each_with_index do |station, index| %>
+    <%= form.fields_for :nearest_stations, station do |station_fields| %>
+      <div>
+        <h3>最寄り駅<%= index + 1 %></h3> 
+      <%= station_fields.label :line_name, "路線名" %><br>
+      <%= station_fields.text_field :line_name %>
+    </div>
     <div>
+      <%= station_fields.label :station_name, "駅名" %><br>
+      <%= station_fields.text_field :station_name %>
+    </div>
+    <div>
+      <%= station_fields.label :minutes_walk, "徒歩分数" %><br>
+      <%= station_fields.text_field :minutes_walk %>
+      <span>分</span>
+    </div>
+    <% end %>
+  <% end %>
+
+  <% if @rental_property.persisted? && @rental_property.nearest_stations.size <= 2 %>
+  <%= form.fields_for :nearest_stations, @rental_property.nearest_stations.build do |station_fields| %>
+    <div>
+      <h3>最寄り駅<%= @rental_property.nearest_stations.size   %></h3>
       <%= station_fields.label :line_name, "路線名" %><br>
       <%= station_fields.text_field :line_name %>
     </div>
@@ -40,16 +61,19 @@
     </div>
 
     <div>
-      <%= station_fields.label :minutes_walk, "徒歩分数" %>分<br>
+      <%= station_fields.label :minutes_walk, "徒歩分数" %><br>
       <%= station_fields.text_field :minutes_walk %>
       <span>分</span>
     </div>
-
-    <hr>
   <% end %>
+<% end %>
+
 
   <div>
-    <%= form.submit %><br>
+    <%= form.submit @rental_property.persisted? ? '更新する' : '登録する' %><br>
+    <% if @rental_property.persisted? %>
+      <%= link_to '詳細', rental_property_path(@rental_property) %>
+    <% end %>
     <%= link_to '戻る', rental_properties_path %>
   </div>
 <% end %>
