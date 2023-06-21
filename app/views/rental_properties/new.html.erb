@@ -1,0 +1,12 @@
+<h1>New Rental Property</h1>
+
+<%= form_with model: @rental_property, local: true do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

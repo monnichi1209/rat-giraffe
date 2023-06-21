@@ -1,0 +1,13 @@
+<h1><%= @rental_property.name %></h1>
+
+<p>
+  <strong>賃料:</strong>
+  <%= @rental_property.rent %>
+</p>
+
+<!-- 他の属性も同様に表示します -->
+
+<p>
+  <%= link_to 'Edit', edit_rental_property_path(@rental_property) %> |
+  <%= link_to 'Back', rental_properties_path %>
+</p>
